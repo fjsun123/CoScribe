@@ -35,7 +35,7 @@ bug:
 
     _LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION
 
-    *******
+*******
 
     Showing Recent Messages
     /Users/work/Desktop/work/project/outsource/rn/CoScribe/ios/build/generated/ios/FBReactNativeSpec/FBReactNativeSpec.h:2218:88: 'value' is unavailable: introduced in iOS 12.0
