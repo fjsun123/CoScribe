@@ -5,29 +5,6 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 platform :ios, '13'
 install! 'cocoapods', :deterministic_uuids => false
 
-# setup_permissions([
-#   # 'AppTrackingTransparency',
-#   # 'Bluetooth',
-#   # 'Calendars',
-#   # 'CalendarsWriteOnly',
-#   # 'Camera',
-#   # 'Contacts',
-#   # 'FaceID',
-#   # 'LocationAccuracy',
-#   # 'LocationAlways',
-#   # 'LocationWhenInUse',
-#   # 'MediaLibrary',
-#   # 'Microphone',
-#   # 'Motion',
-#   # 'Notifications',
-#   # 'PhotoLibrary',
-#   # 'PhotoLibraryAddOnly',
-#   # 'Reminders',
-#   # 'Siri',
-#   # 'SpeechRecognition',
-#   # 'StoreKit',
-# ])
-
 target 'CoScribe' do
   config = use_native_modules!
 
