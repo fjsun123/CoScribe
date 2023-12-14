@@ -5,6 +5,8 @@
 #import <React/RCTRootView.h>
 
 #import <React/RCTAppSetupUtils.h>
+#import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 
 #if RCT_NEW_ARCH_ENABLED
 #import <React/CoreModulesPlugins.h>
@@ -15,8 +17,8 @@
 #import <ReactCommon/RCTTurboModuleManager.h>
 
 #import <react/config/ReactNativeConfig.h>
-#import <Foundation/Foundation.h>
-#import <AVFoundation/AVFoundation.h>
+
+
 
 static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 
@@ -61,23 +63,21 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
   [self.window makeKeyAndVisible];
   
   [self requestMicrophonePermission];
+
   return YES;
 }
 
 
 - (void)requestMicrophonePermission {
-//  AVAudioSession *audioSession =   [AVAudioSession sharedInstance];
-//       
-//     NSError *error = nil;
-//     if ([audioSession requestRecordPermission: &error]) {
-//         if (error) {
-//             NSLog(@"Error: %@", error);
-//         } else {
-//             NSLog(@"Access granted");
-//         }
-//     } else {
-//         NSLog(@"Access denied");
-//     }
+  AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+  [AVCaptureDevice requestAccessForMediaType:AVMediaTypeAudio completionHandler:^(BOOL granted) {
+      if (!granted) {
+        NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+            [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+        }
+      }
+  }];
 }
 
 /// This method controls whether the `concurrentRoot`feature of React18 is turned on or off.
