@@ -1,3 +1,5 @@
+import React, { Component } from 'react';
+
 import {
   Platform,
   StyleSheet,
@@ -37,7 +39,6 @@ class Main extends Component<Props> {
   }
 
   async getFilesInDirectory() {
-
     try {
       const path = await RNFS.readDir(directoryPath);
       let list = []
@@ -55,26 +56,45 @@ class Main extends Component<Props> {
   async startRecording() {
     const name = "sound" + (this.state.directory.length).toString() + ".m4a"
     try {
+      this.setState({
+        currentPositionSec: 0,
+        currentDurationSec: 0,
+        duration: "",
+      })
+      await audioRecorderPlayer.stopPlayer();
       await audioRecorderPlayer.startRecorder(name);
       this.setState({ startRecording: "1" })
     } catch (error) {
       console.log(error);
     }
   }
+
   async stopPlayer() {
+    try {
     this.setState({
       currentPositionSec: 0,
       currentDurationSec: 0,
       duration: "",
     })
     await audioRecorderPlayer.stopPlayer();
+  } catch (error) {
+    console.log(error);
   }
+  }
+  
   async PausePlay() {
     await audioRecorderPlayer.pausePlayer();
   }
+
   async startPlayer(name) {
     let this_ = this;
     try {
+      this.setState({
+        currentPositionSec: 0,
+        currentDurationSec: 0,
+        duration: "",
+      })
+      await audioRecorderPlayer.stopPlayer();
       await audioRecorderPlayer.startPlayer(name);
       audioRecorderPlayer.addPlayBackListener((e) => {
         this_.setState({
@@ -276,4 +296,3 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   }
 });
-
