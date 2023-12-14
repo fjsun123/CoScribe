@@ -1,6 +1,3 @@
-
-<<<<<<< HEAD
-=======
 import {
   Platform,
   StyleSheet,
@@ -279,4 +276,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   }
 });
->>>>>>> 0d40268 (play)
+
